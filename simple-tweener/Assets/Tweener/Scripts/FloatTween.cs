@@ -7,7 +7,7 @@ namespace Koneski.Tweener
 {
     public class FloatTween : MonoBehaviour
     {
-        public static Tween CreateTween(float duration, Action<float> OnUpdate, Action OnEnd)
+        public static Tween CreateTween(float duration, Action<float> OnUpdate, Action OnEnd = null)
         {
             Tween tween = new Tween();
 

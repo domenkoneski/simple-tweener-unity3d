@@ -33,8 +33,24 @@ namespace Koneski.Tweener
 
                     if (tween.DurationLeft <= 0)
                     {
-                        tweenToDelete = i;
-                        tween.OnEndAction.Invoke();
+                        if ((tween.ShouldRepeat && tween.RepeatsLeft > 0) ||
+                            tween.ShouldRepeat && tween.RepeatsLeft == -1)
+                        {
+                            if (tween.RepeatsLeft != -1)
+                                tween.RepeatsLeft -= 1;
+
+                            tween.DurationLeft = tween.Duration;
+
+                            if (tween.OnRepeatAction != null)
+                                tween.OnRepeatAction.Invoke();
+                        }
+                        else
+                        {
+                            tweenToDelete = i;
+
+                            if (tween.OnEndAction != null)
+                                tween.OnEndAction.Invoke();
+                        }
                     }
                     else
                         tween.OnUpdateAction(tween.DurationLeft);
