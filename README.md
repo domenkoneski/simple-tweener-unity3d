@@ -29,13 +29,17 @@ transform.SwingPosition(float duration, float height, Action onEnd);
 Tween options:
 Repeats tween. Default = 0. Set to -1 to repeat infinite times.
 ```cs
-transform.Repeat(int count);
+tween.Repeat(int count);
 ```
 Starts the tween.
 ```cs
-transform.Start();
+tween.Start();
 ```
 Cancels the tween the next possible frame.
 ```cs
-transform.Cancel();
+tween.Cancel();
+```
+You can also stack/chain methods:
+```cs
+transform.TweenScale(Vector3.one, 1, null).Repeat(10);
 ```
